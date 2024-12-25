@@ -1,0 +1,140 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="DoctorMaster.Master.cs" Inherits="OccupancyDetectionWeb.Admin.AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+      <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+      <link rel="icon" type="image/png" href="img/favicon.png">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+      <!--     Fonts and icons     -->
+      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+      <!-- CSS Files -->
+      <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+      <!-- CSS Just for demo purpose, don't include it in your project -->
+      <link href="../assets/demo/demo.css" rel="stylesheet" />
+        <style>
+
+            .subMenu{
+                display:none;
+                position:relative;
+                left:70px;
+            }
+            .sidebar-wrapper{
+                margin-left:-15px
+            }
+        </style>
+</head>
+<body>
+      <form id="form1" runat="server">
+   <div class="wrapper ">
+    <div class="sidebar" data-color="orange">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+      <div class="logo">
+        <a class="simple-text logo-normal" style="margin-left:25%">
+          Admin Panel
+        </a>
+      </div>
+      <div class="sidebar-wrapper" id="sidebar-wrapper">
+        <ul class="nav" id="nav">
+          <li id="liCourses">
+            <a href="Home.aspx">
+              <i class="now-ui-icons education_atom"></i>
+              <p style="font-size:large">Dashboard</p>
+            </a>
+          </li>
+          <li>
+            <a href="ManagePatient.aspx">
+              <i class="now-ui-icons location_map-big"></i>
+              <p style="font-size:large">Manage Patient</p>
+            </a>
+          </li>
+          <li>
+            <a href="ManageFile.aspx">
+              <i class="now-ui-icons location_map-big"></i>
+              <p style="font-size:large">Manage File</p>
+            </a>
+          </li>
+          <li>
+            <a href="ViewUserFile.aspx">
+              <i class="now-ui-icons location_map-big"></i>
+              <p style="font-size:large">View User File</p>
+            </a>
+          </li>
+          <li>  
+            <a href="../Logout.aspx">
+              <i class="now-ui-icons  media-1_button-power"></i>
+              <p style="font-size:large">Logout</p>
+            </a>
+          </li>   
+        </ul>
+      </div>
+       
+    </div>
+    <div class="main-panel" id="main-panel" style="background-color: #ebecf1;height:100%">
+ 
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                
+            </asp:ContentPlaceHolder>
+     </div>
+            
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../assets/demo/demo.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        </div>
+    </form>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+
+        var flag=1;
+
+        var str=location.href.toLowerCase();
+        $("#nav li a").each(function() {
+            if (str.indexOf($(this).attr("href").toLowerCase()) > -1) {
+                $("li.active").removeClass("active");
+                $(this).parent().addClass("active");
+            }
+        });
+        $("li.active").parents().each(function(){
+            if ($(this).is("li")){
+                $(this).addClass("active");
+            }
+        });
+
+        $("#liUser").click(function () {
+
+            $("li.active").removeClass("active");
+            $(this).addClass("active");
+
+            if (flag == 1) {
+                flag = 0;
+                $("#subMenu").css("display", "inline-block");
+            }
+            else if (flag == 0) {
+                $(this).removeClass("active");
+                flag = 1;
+                $("#subMenu").css("display", "none");
+            }
+        });
+        
+
+    });
+
+   
+</script>
